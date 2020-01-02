@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import ProfileComponent from './components/ProfileComponent';
 import './App.css';
+import {ProfileStore} from "./stores/ProfileStore";
+import { observable, computed, action } from "mobx-react"
+
+import { Provider } from "mobx-react"
+import UpdateProfileComponent from "./components/UpdateProfileComponent";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Provider profileStore={ new ProfileStore() }>
+          <div className="App">
+              <div>
+                  <ProfileComponent />
+                  <UpdateProfileComponent/>
+              </div>
+          </div>
+      </Provider>
+
   );
 }
 
